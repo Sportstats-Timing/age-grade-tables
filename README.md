@@ -40,7 +40,39 @@ import { getAgeGradeTable, getFactorByAgeAndGender } from 'age-grade-tables';
 
 const table = getAgeGradeTable('2025_ironman', 'array');
 const factor = getFactorByAgeAndGender(table, 'M', 37);
-console.log(factor); // 0.98
+console.log(factor); // 0.9895
+```
+
+### Bulk Processing for Large Datasets (40,000+ athletes)
+
+For processing large numbers of athletes efficiently:
+
+```typescript
+import { 
+  getAgeGradeTable, 
+  createAgeGradeLookup, 
+  processAthletesBulk 
+} from 'age-grade-tables';
+
+// Setup: Create fast lookup table (do once)
+const table = getAgeGradeTable('2025_ironman', 'array');
+const lookup = createAgeGradeLookup(table);
+
+// Process 40,000 athletes efficiently
+const athletes = [
+  { id: 1, age: 35, gender: 'M', finishTime: 32400 },
+  { id: 2, age: 42, gender: 'F', finishTime: 34200 },
+  // ... 40,000 athletes
+];
+
+const results = processAthletesBulk(lookup, athletes);
+// Returns: [{ id: 1, age: 35, gender: 'M', finishTime: 32400, factor: 0.9895 }, ...]
+
+// Calculate age-graded times
+const ageGradedResults = results.map(athlete => ({
+  ...athlete,
+  ageGradedTime: athlete.factor ? athlete.finishTime / athlete.factor : null
+}));
 ```
 
 ## API Reference
@@ -54,6 +86,20 @@ console.log(factor); // 0.98
 ### Helpers
 - `getFactorByAgeAndGender(table, gender, age)`
   - `table`: Age grade table (array format)
+  - `gender`: `'M'` or `'F'`
+  - `age`: number (athlete's age)
+  - Returns: The factor for the matching age/gender, or `null` if not found
+
+### Bulk Processing (for large datasets)
+- `createAgeGradeLookup(table)`
+  - `table`: Age grade table (array format)
+  - Returns: Fast lookup Map for O(1) factor retrieval
+- `processAthletesBulk(lookup, athletes)`
+  - `lookup`: Pre-built lookup Map
+  - `athletes`: Array of athlete objects with `age` and `gender` properties
+  - Returns: Array of athletes with their age grade factors added
+- `getFactorFromLookup(lookup, gender, age)`
+  - `lookup`: Pre-built lookup Map
   - `gender`: `'M'` or `'F'`
   - `age`: number (athlete's age)
   - Returns: The factor for the matching age/gender, or `null` if not found
