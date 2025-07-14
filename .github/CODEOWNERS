@@ -1,0 +1,8 @@
+# These owners will be the default owners for everything in the repo
+# Unless a later match takes precedence, they will be requested for
+# review when someone opens a pull request.
+* @rcrawford
+
+# Specific file patterns can have specific owners
+package.json @rcrawford
+.github/ @rcrawford 
