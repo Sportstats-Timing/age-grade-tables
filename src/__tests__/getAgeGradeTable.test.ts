@@ -82,8 +82,8 @@ describe('getAgeGradeTable', () => {
       const minAge = Math.min(...ages.flat());
       const maxAge = Math.max(...ages.flat());
       
-      expect(minAge).toBe(0);
-      expect(maxAge).toBe(99);
+      expect(minAge).toBe(18);
+      expect(maxAge).toBe(89);
     });
 
     it('should have correct age groups for Ironman 70.3', () => {
@@ -101,8 +101,8 @@ describe('getAgeGradeTable', () => {
       const minAge = Math.min(...ages.flat());
       const maxAge = Math.max(...ages.flat());
       
-      expect(minAge).toBe(0);
-      expect(maxAge).toBe(99);
+      expect(minAge).toBe(18);
+      expect(maxAge).toBe(89);
     });
   });
 });
@@ -111,13 +111,13 @@ describe('getFactorByAgeAndGender', () => {
   it('should return correct factor for valid age and gender', () => {
     const table = getAgeGradeTable('2025_ironman', 'array') as any[];
     const factor = getFactorByAgeAndGender(table, 'M', 35);
-    expect(factor).toBe(0.98);
+    expect(factor).toBe(0.9895);
   });
 
   it('should return correct factor for female', () => {
     const table = getAgeGradeTable('2025_ironman', 'array') as any[];
     const factor = getFactorByAgeAndGender(table, 'F', 35);
-    expect(factor).toBe(0.98);
+    expect(factor).toBe(0.8866);
   });
 
   it('should return null for invalid age', () => {
@@ -136,11 +136,11 @@ describe('getFactorByAgeAndGender', () => {
     const table = getAgeGradeTable('2025_ironman', 'array') as any[];
     
     // Test age at start of range
-    const factorStart = getFactorByAgeAndGender(table, 'M', 0);
-    expect(factorStart).toBe(1.0);
+    const factorStart = getFactorByAgeAndGender(table, 'M', 18);
+    expect(factorStart).toBe(0.9698);
     
     // Test age at end of range
-    const factorEnd = getFactorByAgeAndGender(table, 'M', 99);
-    expect(factorEnd).toBe(0.925);
+    const factorEnd = getFactorByAgeAndGender(table, 'M', 89);
+    expect(factorEnd).toBe(0.5416);
   });
 }); 
