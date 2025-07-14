@@ -1,0 +1,53 @@
+{
+  "name": "age-grade-tables",
+  "version": "1.0.0",
+  "description": "Age grading tables for races like Ironman in compact array format",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "prepublishOnly": "npm run build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix"
+  },
+  "keywords": [
+    "age-grade",
+    "running",
+    "triathlon",
+    "ironman",
+    "tables",
+    "performance",
+    "standards"
+  ],
+  "author": "rcrawford",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.5.0",
+    "rimraf": "^5.0.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sportstats-Timing/age-grade-tables.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sportstats-Timing/age-grade-tables/issues"
+  },
+  "homepage": "https://github.com/Sportstats-Timing/age-grade-tables#readme"
+} 
