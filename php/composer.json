@@ -1,0 +1,39 @@
+{
+    "name": "sportstats-timing/age-grade-tables",
+    "description": "Age grading tables for races like Ironman and Ironman 70.3 in compact format for PHP",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "rcrawford",
+            "email": "rcrawford@sportstats-timing.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SportstatsTiming\\AgeGradeTables\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SportstatsTiming\\AgeGradeTables\\Tests\\": "tests/"
+        }
+    },
+    "keywords": [
+        "age-grade",
+        "running",
+        "triathlon",
+        "ironman",
+        "tables",
+        "performance",
+        "standards"
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

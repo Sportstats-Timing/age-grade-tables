@@ -21,7 +21,7 @@ export interface AgeGradeObjectEntry {
 /**
  * Table name type for supported age grade tables
  */
-export type TableName = '2025_ironman' | '2025_ironman703';
+export type TableName = '2025_ironman' | '2025_ironman703' | '2025_ironman_v2';
 
 /**
  * Format type for data output

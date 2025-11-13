@@ -1,5 +1,6 @@
 import { TableName, Format, AgeGradeCompactEntry, AgeGradeObjectEntry } from './types';
 import { ageGradeTable_2025_ironman } from './tables/2025_ironman';
+import { ageGradeTable_2025_ironman_v2 } from './tables/2025_ironman_v2';
 import { ageGradeTable_2025_ironman703 } from './tables/2025_ironman703';
 
 // Main exports for the age-grade-tables package
@@ -16,6 +17,7 @@ export * from './helpers';
  * @param name - The table name to retrieve. Currently supports:
  *   - '2025_ironman': Full Ironman distance (2.4mi swim, 112mi bike, 26.2mi run)
  *   - '2025_ironman703': Ironman 70.3 distance (1.2mi swim, 56mi bike, 13.1mi run)
+ *   - '2025_ironman_v2': Ironman v2 distance (2.4mi swim, 112mi bike, 26.2mi run)
  * @param format - The output format for the table data:
  *   - 'array': Returns compact array format `[gender, start_age, end_age, factor]`
  *   - 'json': Returns object format `{gender, start, end, factor}`
@@ -67,6 +69,9 @@ export function getAgeGradeTable(name: TableName, format: Format = 'array'): Age
   switch (name) {
     case '2025_ironman':
       table = ageGradeTable_2025_ironman;
+      break;
+    case '2025_ironman_v2':
+      table = ageGradeTable_2025_ironman_v2;
       break;
     case '2025_ironman703':
       table = ageGradeTable_2025_ironman703;
