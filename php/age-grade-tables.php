@@ -123,6 +123,44 @@ class AgeGradeTables
     ];
 
     /**
+     * 2025 Ironman 70.3 Age Grade Table
+     * Format: [gender, start_age, end_age, factor]
+     */
+    private static $ironman7032026 = [
+        // Male age groups
+        ["M", 18, 24, 1.0000],
+        ["M", 25, 29, 0.9941],
+        ["M", 30, 34, 0.9708],
+        ["M", 35, 39, 0.954],
+        ["M", 40, 44, 0.9309],
+        ["M", 45, 49, 0.902],
+        ["M", 50, 54, 0.8871],
+        ["M", 55, 59, 0.8583],
+        ["M", 60, 64, 0.8215],
+        ["M", 65, 69, 0.7669],
+        ["M", 70, 74, 0.7111],
+        ["M", 75, 79, 0.6431],
+        ["M", 80, 84, 0.5153],
+        ["M", 85, 89, 0.5415],
+
+        // Female age groups
+        ["F", 18, 24, 0.9899],
+        ["F", 25, 29, 1.0000],
+        ["F", 30, 34, 0.9826],
+        ["F", 35, 39, 0.9681],
+        ["F", 40, 44, 0.9452],
+        ["F", 45, 49, 0.9198],
+        ["F", 50, 54, 0.9031],
+        ["F", 55, 59, 0.8747],
+        ["F", 60, 64, 0.8382],
+        ["F", 65, 69, 0.7785],
+        ["F", 70, 74, 0.7348],
+        ["F", 75, 79, 0.6257],
+        ["F", 80, 84, 0.6257],
+        ["F", 85, 89, 0.6257],
+    ];
+
+    /**
      * Get age grade table by name
      * 
      * @param string $name Table name ('2025_ironman' or '2025_ironman703')
@@ -140,6 +178,9 @@ class AgeGradeTables
                 break;
             case '2025_ironman703':
                 $table = self::$ironman7032025;
+                break;
+            case '2026_ironman703':
+                $table = self::$ironman7032026;
                 break;
             case '2025_ironman_v2':
                 $table = self::$ironman2025_v2;

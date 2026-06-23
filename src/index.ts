@@ -2,6 +2,7 @@ import { TableName, Format, AgeGradeCompactEntry, AgeGradeObjectEntry } from './
 import { ageGradeTable_2025_ironman } from './tables/2025_ironman';
 import { ageGradeTable_2025_ironman_v2 } from './tables/2025_ironman_v2';
 import { ageGradeTable_2025_ironman703 } from './tables/2025_ironman703';
+import { ageGradeTable_2026_ironman703 } from './tables/2026_ironman703';
 
 // Main exports for the age-grade-tables package
 export * from './types';
@@ -75,6 +76,9 @@ export function getAgeGradeTable(name: TableName, format: Format = 'array'): Age
       break;
     case '2025_ironman703':
       table = ageGradeTable_2025_ironman703;
+      break;
+    case '2026_ironman703':
+      table = ageGradeTable_2026_ironman703;
       break;
     default:
       throw new Error(`Unknown table name: ${name}`);
