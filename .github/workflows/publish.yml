@@ -14,15 +14,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '24'
-          # Do not set registry-url — it writes //registry.npmjs.org/:_authToken to
-          # .npmrc, which blocks OIDC when NODE_AUTH_TOKEN is unset (causes E404).
-
+          registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false  # never use caching in release builds
+          
       - name: Upgrade npm for Trusted Publishing
         run: npm install -g npm@latest
 
