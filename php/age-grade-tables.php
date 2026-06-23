@@ -123,7 +123,7 @@ class AgeGradeTables
     ];
 
     /**
-     * 2025 Ironman 70.3 Age Grade Table
+     * 2026 Ironman 70.3 Age Grade Table
      * Format: [gender, start_age, end_age, factor]
      */
     private static $ironman7032026 = [
