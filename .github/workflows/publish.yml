@@ -5,13 +5,13 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-  id-token: write # Required for npm Trusted Publisher (OIDC)
-
 jobs:
   build-test-publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # Required for npm Trusted Publisher (OIDC)
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,8 +20,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          # No registry-url here — it writes an _authToken line to .npmrc that
-          # blocks OIDC. Public deps install fine without it.
+
+      - name: Upgrade npm for Trusted Publishing
+        run: npm install -g npm@latest
+
+      - name: Verify npm and OIDC are available
+        run: |
+          echo "node: $(node --version)"
+          echo "npm: $(npm --version)"
+          npm_version="$(npm --version)"
+          if [ "$(printf '%s\n' "11.5.1" "$npm_version" | sort -V | head -n1)" != "11.5.1" ]; then
+            echo "::error::npm $npm_version is too old; Trusted Publishing requires npm >= 11.5.1"
+            exit 1
+          fi
+          if [ -z "$ACTIONS_ID_TOKEN_REQUEST_URL" ]; then
+            echo "::error::OIDC is not available. Ensure id-token: write is allowed (check org Actions settings)."
+            exit 1
+          fi
 
       - name: Install dependencies
         run: npm ci
@@ -34,4 +49,4 @@ jobs:
 
       - name: Publish to npm
         if: github.ref == 'refs/heads/main'
-        run: npm publish
+        run: npm publish --registry https://registry.npmjs.org
